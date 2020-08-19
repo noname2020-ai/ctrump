@@ -1,0 +1,76 @@
+<html>
+    <head><title> Ctrump language interpreter</title></head>
+<body>
+    <img src="ctrump.png" style="width: 50px;"/>
+<h1>This is first authentic Ctrump language interpreter(It is a lie). Not Fake. And it really makes sense. :)</h1>
+<a href='https://mp.weixin.qq.com/s?__biz=MzU2NTYyOTQ4OQ==&mid=2247484714&idx=1&sn=70f1c19adbf1c873f5493ad58335f210&chksm=fcb98274cbce0b626a090531afd08dee357cd5b9568865cd20e0fb7185b3656b0f59ec226d2c&mpshare=1&scene=1&srcid=0819lM5kcwp0qXGZrU2pL2cm&sharer_sharetime=1597844140472&sharer_shareid=eb3f71f3e11787e7e83fa91cc2d283f5&key=68e9243f129238459ba3772abb65f91bb34466b54a7c003a25a961c2a1fc8fa01663bbacd69884a9494184f4dd8a123d6463a09d08aa4eea9c92fa6de760b083ff931a6595a55541d6ec0078bcdb9856e98ed3465a548a7258e2d2371a8f1de99e3da1cac861e1604cb7d1e30ed8a7f64d480f52e00e465da305441033dbfd19&ascene=1&uin=MTUzMzkwOTMxOQ%3D%3D&devicetype=Windows+10+x64&version=62090070&lang=en&exportkey=A669r1qheO3x34yvw9pmMvI%3D&pass_ticket=mW376jwAJtF15pJ6IQLI4HgcakvBW0OUnzEKT7JwPe7Wdyet7cxKX9vDcv1rPJIg'>编译器说明</a>
+<br/>
+<!-- margin: 0px;height: 100%;width: 100%;background-image: url("ctrump.png");background-repeat: no-repeat;opacity: 0.3; -->
+<textarea id="code_area" style="margin: 0px;height: 150px;width: 100%;">
+    
+    var true_value=!fake$
+    var false_value=fake$
+    var min_int_value=100000000$
+    var legal_str = "America is not so great"$
+    legal_str$
+
+
+
+</textarea>
+<button onclick="check_ip()" >编译</button><br/><br/>
+代码执行结果：
+<div id="result_area" style="border:1px solid yellow" >
+Everything is under control.
+</div><br/><br/>
+<hr/>
+<div>P.S. This interpreter has been made in less than 30 mins. 
+    And I don't know how to program.</div>
+
+<script>
+    function check_ip(){
+        if( prompt("请确认你是在美国境内", "Yes")==="Yes") {
+            interpret();
+            
+        }else
+            print_interpret_result("这门伟大的编程语言编写的程序无法运行");
+        
+    }
+    function check_syntax(code_txt){
+        var illegal_str_dic={
+            "(\"|\')America is not so great(\"|\')":"非法字符串",
+            "^import ":"Ctrump语言不能从外部进口，必须是Make in America",
+            "^include ":"Ctrump语言不能从外部进口，必须是Make in America"
+            };
+        var is_error=0;
+        code_txt.split("\n").forEach(function(code_line,line_num){
+                    Object.keys(illegal_str_dic).forEach(function(x){ 
+                        if(RegExp(x).test(code_line)){
+                            is_error=1
+                            console.log(code_line)
+                            print_interpret_result("Line "+line_num+": "+code_line+"<br/>"+illegal_str_dic[x]);
+                            return 0;
+                        } 
+                    });
+                    
+             } )
+        return is_error
+    }
+    function interpret(){
+        var code_txt=document.getElementById("code_area").value;
+        
+        if(!check_syntax(code_txt)) {
+            code_txt=code_txt.replace(/(?:\$\r\n|\$\r|\$\n)/g,';').replace(/fake/g,'1');
+            console.log(code_txt);
+            print_interpret_result("All Bug has disapeared.  It’s like a miracle.<br/>"+eval(code_txt))
+       
+        }
+       
+    }
+    function print_interpret_result(str){
+          //document.getElementById("result_area").style="display:block";
+          document.getElementById("result_area").innerHTML=str;
+    }
+    interpret()
+</script>
+</body>
+</html>
